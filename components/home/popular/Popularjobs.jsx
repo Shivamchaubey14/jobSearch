@@ -22,9 +22,8 @@ const Popularjobs = () => {
 
   const handleCardPress = (item) => {
     console.log("Card pressed:", item);
-    // navigate to job details page, or handle as needed
+    router.push(`/job-details/${item.job_id}`); // Navigate to job details page
   };
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>

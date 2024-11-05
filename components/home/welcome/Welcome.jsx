@@ -16,7 +16,7 @@ import { TouchableOpacity } from "react-native";
 
 const jobTypes = ["Full-time", "Part-time", "Contractor"];
 
-const Welcome = () => {
+const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
   const [activeJobType, setactiveJobType] = useState("Full-time");
 
@@ -30,12 +30,14 @@ const Welcome = () => {
         <View style={styles.searchWrapper}>
           <TextInput
             style={styles.searchInput}
-            value=""
-            onChange={() => {}}
+            value={searchTerm}
+            onChangeText={(text) => {
+              setSearchTerm(text);
+            }}
             placeholder="React-Native Developer"
           />
         </View>
-        <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
           <Image
             source={icons.search}
             resizeMode="contain"
@@ -51,14 +53,14 @@ const Welcome = () => {
               style={styles.tab(activeJobType, item)}
               onPress={() => {
                 setactiveJobType(item);
-                router.push(`/search/${item}`)
+                router.push(`/search/${item}`);
               }}
             >
               <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
             </TouchableOpacity>
           )}
-          keyExtractor={item => item}
-          contentContainerStyle={{columnGap: SIZES.small}}
+          keyExtractor={(item) => item}
+          contentContainerStyle={{ columnGap: SIZES.small }}
           horizontal
         />
       </View>
